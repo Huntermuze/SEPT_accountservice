@@ -1,4 +1,4 @@
-package com.septgroup.accountservice.model;
+package com.septgroup.accountservice.model.singular;
 
 import java.util.Arrays;
 

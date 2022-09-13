@@ -1,4 +1,6 @@
-package com.septgroup.accountservice.model;
+package com.septgroup.accountservice.model.singular;
+
+import com.septgroup.accountservice.model.singular.Doctor;
 
 import java.util.Collections;
 import java.util.List;
