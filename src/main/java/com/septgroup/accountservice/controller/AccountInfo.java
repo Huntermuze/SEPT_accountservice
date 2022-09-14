@@ -48,9 +48,8 @@ public class AccountInfo {
         return ResponseEntity.ok(patient.get());
     }
 
-    @PostMapping(path = "/doctor/{userID}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> addDoctor(@RequestBody Doctor newDoctor, @PathVariable String userID) {
-        // TODO validation of userID, and wait for response on design of endpoint.
+    @PostMapping(path = "/doctor", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Object> addDoctor(@RequestBody Doctor newDoctor) {
         if (accountDAO.getDoctor(newDoctor).isPresent()) {
             return ResponseEntity.badRequest().body(String.format("A doctor with id %s already exists!", newDoctor.getId()));
         }
@@ -64,9 +63,8 @@ public class AccountInfo {
         return ResponseEntity.created(loc).build();
     }
 
-    @PostMapping(path = "/patient/{userID}", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> addPatient(@RequestBody Patient newPatient, @PathVariable String userID) {
-        // TODO validation of userID, and wait for response on design of endpoint.
+    @PostMapping(path = "/patient", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Object> addPatient(@RequestBody Patient newPatient) {
         if (accountDAO.getPatient(newPatient).isPresent()) {
             return ResponseEntity.badRequest().body(String.format("A patient with id %s already exists!", newPatient.getId()));
         }
@@ -80,9 +78,8 @@ public class AccountInfo {
         return ResponseEntity.created(loc).build();
     }
 
-    @PutMapping(path = "/doctor/{userID}", consumes = "application/json")
-    public ResponseEntity<Object> updateDoctor(@RequestBody Doctor newDoctor, @PathVariable String userID) {
-        // TODO validation of userID, and wait for response on design of endpoint.
+    @PutMapping(path = "/doctor", consumes = "application/json")
+    public ResponseEntity<Object> updateDoctor(@RequestBody Doctor newDoctor) {
         var result = accountDAO.getDoctor(newDoctor);
         if (result.isEmpty()) {
             return ResponseEntity.badRequest().body(String.format("You cannot update a doctor (with id %s) that does not exist!", newDoctor.getId()));
@@ -99,9 +96,8 @@ public class AccountInfo {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(path = "/patient/{userID}", consumes = "application/json")
-    public ResponseEntity<Object> updatePatient(@RequestBody Patient newPatient, @PathVariable String userID) {
-        // TODO validation of userID, and wait for response on design of endpoint.
+    @PutMapping(path = "/patient", consumes = "application/json")
+    public ResponseEntity<Object> updatePatient(@RequestBody Patient newPatient) {
         var result = accountDAO.getPatient(newPatient);
         if (result.isEmpty()) {
             return ResponseEntity.badRequest().body(String.format("You cannot update a patient (with id %s) that does not exist!", newPatient.getId()));
