@@ -1,5 +1,7 @@
 package com.septgroup.accountservice.model.singular;
 
+import java.util.Objects;
+
 //Doctor
 //		- CRUD: Email, Password, First name, Last name, Gender, Mobile Number, Clinics working at, Documents, Availability
 //
@@ -68,5 +70,19 @@ public abstract class User {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id.equals(user.id) && email.equals(user.email) && firstName.equals(user.firstName) &&
+                lastName.equals(user.lastName) && gender.equals(user.gender) && mobileNumber.equals(user.mobileNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, email, firstName, lastName, gender, mobileNumber);
     }
 }

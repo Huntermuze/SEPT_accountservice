@@ -1,6 +1,7 @@
 package com.septgroup.accountservice.model.singular;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Doctor extends User {
     private Availability availability;
