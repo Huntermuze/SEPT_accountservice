@@ -1,14 +1,19 @@
 package com.septgroup.accountservice.model.singular;
 
+import javax.persistence.Entity;
 import java.util.List;
-import java.util.Objects;
 
+// TODO figure out how to create table of custom classes (for doctor - appointment) and how to map it properly.
+@Entity(name = "Doctor")
 public class Doctor extends User {
     private Availability availability;
     private List<Clinic> clinicsWorkingAt;
 
-    public Doctor(String id, String email, String firstName, String lastName, String gender, String mobileNumber, Availability availability, List<Clinic> clinicsWorkingAt) {
-        super(id, email, firstName, lastName, gender, mobileNumber);
+    public Doctor() {
+    }
+
+    public Doctor(String email, String firstName, String lastName, User.Sex sex, String mobileNumber, Availability availability, List<Clinic> clinicsWorkingAt) {
+        super(email, firstName, lastName, sex, mobileNumber);
         this.availability = availability;
         this.clinicsWorkingAt = clinicsWorkingAt;
     }
@@ -27,5 +32,19 @@ public class Doctor extends User {
 
     public void setClinicsWorkingAt(List<Clinic> clinicsWorkingAt) {
         this.clinicsWorkingAt = clinicsWorkingAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id='" + getId() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", sex='" + getSex() + '\'' +
+                ", mobileNumber='" + getMobileNumber() + '\'' +
+                ", availability=" + availability + '\'' +
+                ", clinicsWorkingAt=" + clinicsWorkingAt + '\'' +
+                "}";
     }
 }

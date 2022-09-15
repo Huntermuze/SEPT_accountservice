@@ -7,6 +7,7 @@ import com.septgroup.accountservice.model.singular.Patient;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 // TODO Setup database.
 @Repository
@@ -23,7 +24,7 @@ public class AccountDAO {
         return patientsList;
     }
 
-    public Optional<Doctor> getDoctor(String uuid) {
+    public Optional<Doctor> getDoctor(UUID uuid) {
         return doctorsList.getDoctors().stream().filter(d -> d.getId().equals(uuid)).findFirst();
     }
 
@@ -31,7 +32,7 @@ public class AccountDAO {
         return doctorsList.getDoctors().stream().filter(d -> d.getId().equals(doc.getId())).findFirst();
     }
 
-    public Optional<Patient> getPatient(String uuid) {
+    public Optional<Patient> getPatient(UUID uuid) {
         return patientsList.getPatients().stream().filter(d -> d.getId().equals(uuid)).findFirst();
     }
 
@@ -53,7 +54,7 @@ public class AccountDAO {
         doctorsList.getDoctors().remove(doc);
     }
 
-    public void removeDoctor(String uuid) {
+    public void removeDoctor(UUID uuid) {
         var found = patientsList.getPatients().stream().filter(d -> d.getId().equals(uuid)).findFirst();
         found.ifPresent(doctor -> patientsList.getPatients().remove(doctor));
     }
@@ -62,7 +63,7 @@ public class AccountDAO {
         patientsList.getPatients().remove(patient);
     }
 
-    public void removePatient(String uuid) {
+    public void removePatient(UUID uuid) {
         var found = doctorsList.getDoctors().stream().filter(d -> d.getId().equals(uuid)).findFirst();
         found.ifPresent(patient -> doctorsList.getDoctors().remove(patient));
     }

@@ -87,7 +87,7 @@ public class AccountInfo {
         Doctor docToUpdate = result.get();
         docToUpdate.setAvailability(newDoctor.getAvailability());
         docToUpdate.setEmail(newDoctor.getEmail());
-        docToUpdate.setGender(newDoctor.getGender());
+        docToUpdate.setSex(newDoctor.getSex());
         docToUpdate.setClinicsWorkingAt(newDoctor.getClinicsWorkingAt());
         docToUpdate.setFirstName(newDoctor.getFirstName());
         docToUpdate.setLastName(newDoctor.getLastName());
@@ -104,7 +104,7 @@ public class AccountInfo {
         }
         Patient patientToUpdate = result.get();
         patientToUpdate.setEmail(newPatient.getEmail());
-        patientToUpdate.setGender(newPatient.getGender());
+        patientToUpdate.setSex(newPatient.getSex());
         patientToUpdate.setFirstName(newPatient.getFirstName());
         patientToUpdate.setLastName(newPatient.getLastName());
         patientToUpdate.setMobileNumber(newPatient.getMobileNumber());
