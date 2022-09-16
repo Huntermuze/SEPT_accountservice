@@ -1,10 +1,10 @@
 package com.septgroup.accountservice;
 
-import com.septgroup.accountservice.model.singular.Doctor;
-import com.septgroup.accountservice.model.singular.Patient;
-import com.septgroup.accountservice.model.singular.Prescription;
-import com.septgroup.accountservice.model.singular.User;
-import com.septgroup.accountservice.repository.PatientRepository;
+import com.septgroup.accountservice.doctor.dto.Doctor;
+import com.septgroup.accountservice.patient.dto.Patient;
+import com.septgroup.accountservice.patient.dto.Prescription;
+import com.septgroup.accountservice.shared.dto.User;
+import com.septgroup.accountservice.shared.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,7 +24,7 @@ public class AccountserviceApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(PatientRepository patientRepository) {
+    CommandLineRunner commandLineRunner(UserRepository patientRepository) {
         return args -> {
             Patient patient = new Patient(
                     "hah",

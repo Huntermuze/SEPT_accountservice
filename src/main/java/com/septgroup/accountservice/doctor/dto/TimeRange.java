@@ -1,4 +1,4 @@
-package com.septgroup.accountservice.model.singular;
+package com.septgroup.accountservice.doctor.dto;
 
 import java.util.Date;
 

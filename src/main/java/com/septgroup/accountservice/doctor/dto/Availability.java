@@ -1,7 +1,9 @@
-package com.septgroup.accountservice.model.singular;
+package com.septgroup.accountservice.doctor.dto;
 
 import java.util.Arrays;
 
+// TODO considering moving to appointments microservice, since it is more aligned with that, and a JSON object passed will
+//  be very messy, given the complex nature of this class and its dependencies. Also revamp this class to make it better.
 public class Availability {
     private final TimeRange[] daysOfWeek;
 

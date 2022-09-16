@@ -1,58 +1,15 @@
-package com.septgroup.accountservice.model.singular;
+package com.septgroup.accountservice.shared.dto;
 
-import javax.persistence.*;
+import com.septgroup.accountservice.shared.Sex;
+
 import java.util.Objects;
-import java.util.UUID;
 
-//Doctor
-//		- CRUD: Email, Password, First name, Last name, sex, Mobile Number, Clinics working at, Documents, Availability
-//
-//		Patient
-//		- CRUD: Email, Password, First name, Last name, DOB, sex, Mobile Number, Current prescriptions, Health status (fever, pain, etc)
-
-@MappedSuperclass
 public abstract class User {
-    @Id
-    @SequenceGenerator(
-            name = "patient_sequence",
-            sequenceName = "patient_sequence",
-            allocationSize = 1
-    )
-    @Column(
-            name = "id",
-            updatable = false
-    )
-    @GeneratedValue()
-    private UUID id;
-    @Column(
-            name = "email",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
+    private String id;
     private String email;
-    @Column(
-            name = "first_name",
-            nullable = false,
-            columnDefinition = "TEXT",
-            unique = true
-    )
     private String firstName;
-    @Column(
-            name = "last_name",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
     private String lastName;
-    @Column(
-            name = "sex",
-            nullable = false
-    )
     private Sex sex;
-    @Column(
-            name = "mobile_number",
-            nullable = false,
-            unique = true
-    )
     private String mobileNumber;
 
     public User(String email, String firstName, String lastName, Sex sex, String mobileNumber) {
@@ -64,10 +21,9 @@ public abstract class User {
     }
 
     public User() {
-
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -91,7 +47,7 @@ public abstract class User {
         return mobileNumber;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -139,19 +95,5 @@ public abstract class User {
                 ", sex='" + sex + '\'' +
                 ", mobileNumber='" + mobileNumber + '\'' +
                 '}';
-    }
-
-    public enum HealthStatus {
-        EXCELLENT,
-        GOOD,
-        MODERATE,
-        POOR,
-        TERRIBLE,
-        EMERGENCY
-    }
-
-    public enum Sex {
-        MALE,
-        FEMALE
     }
 }

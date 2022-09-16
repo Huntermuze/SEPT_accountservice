@@ -1,6 +1,6 @@
-package com.septgroup.accountservice.model.plural;
+package com.septgroup.accountservice.doctor.dto.container;
 
-import com.septgroup.accountservice.model.singular.Doctor;
+import com.septgroup.accountservice.doctor.dto.Doctor;
 
 import java.util.ArrayList;
 import java.util.Collections;

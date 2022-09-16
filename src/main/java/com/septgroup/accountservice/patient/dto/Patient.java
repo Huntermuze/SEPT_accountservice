@@ -1,37 +1,23 @@
-package com.septgroup.accountservice.model.singular;
+package com.septgroup.accountservice.patient.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import com.septgroup.accountservice.patient.HealthStatus;
+import com.septgroup.accountservice.shared.Sex;
+import com.septgroup.accountservice.shared.dto.User;
+
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-@Entity(name = "Patient")
-@Table(name = "Patient")
-// TODO sort out what im doing with the list columns (prescriptions).
 public class Patient extends User {
-    @Column(
-            name = "dob",
-            nullable = false
-    )
     private Date DOB;
-
     private List<Prescription> prescriptions;
-    @Column(
-            name = "health_status",
-            nullable = false
-    )
-    private User.HealthStatus healthStatus;
+    private HealthStatus healthStatus;
 
-    public Patient(String email, String firstName, String lastName, User.Sex sex, String mobileNumber, Date DOB, List<Prescription> prescriptions, HealthStatus healthStatus) {
+    public Patient(String email, String firstName, String lastName, Sex sex, String mobileNumber, Date DOB, List<Prescription> prescriptions, HealthStatus healthStatus) {
         super(email, firstName, lastName, sex, mobileNumber);
         this.DOB = DOB;
         this.prescriptions = prescriptions;
         this.healthStatus = healthStatus;
-    }
-
-    public Patient() {
-        super();
     }
 
     public Date getDOB() {
@@ -56,6 +42,20 @@ public class Patient extends User {
 
     public void setHealthStatus(HealthStatus healthStatus) {
         this.healthStatus = healthStatus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Patient patient = (Patient) o;
+        return DOB.equals(patient.DOB) && prescriptions.equals(patient.prescriptions) && healthStatus == patient.healthStatus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), DOB, prescriptions, healthStatus);
     }
 
     @Override
