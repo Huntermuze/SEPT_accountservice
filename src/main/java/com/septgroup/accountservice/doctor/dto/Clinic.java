@@ -1,7 +1,4 @@
 package com.septgroup.accountservice.doctor.dto;
 
-import java.util.Collections;
-import java.util.List;
-
-public record Clinic(String clinicName, List<Doctor> doctorList) {
+public record Clinic(long clinicID, String clinicName, String location, String phoneNumber) {
 }

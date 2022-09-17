@@ -48,7 +48,8 @@ public abstract class UserPOJO {
     )
     private String mobileNumber;
 
-    public UserPOJO(String email, String firstName, String lastName, Sex sex, String mobileNumber) {
+    public UserPOJO(UUID id, String email, String firstName, String lastName, Sex sex, String mobileNumber) {
+        this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -57,50 +58,51 @@ public abstract class UserPOJO {
     }
 
     public UserPOJO() {
+
     }
 
     public UUID getId() {
         return id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public Sex getSex() {
-        return sex;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    public Sex getSex() {
+        return sex;
+    }
+
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
     public void setMobileNumber(String mobileNumber) {

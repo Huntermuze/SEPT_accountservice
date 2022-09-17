@@ -1,6 +1,4 @@
 package com.septgroup.accountservice.patient.dto;
 
-import java.util.UUID;
-
-public record Prescription(UUID id, String drugName, double quantity, String pharmaceuticalCompany) {
+public record Prescription(long prescription_id, String drugName, double quantity, String pharmaceuticalCompany) {
 }

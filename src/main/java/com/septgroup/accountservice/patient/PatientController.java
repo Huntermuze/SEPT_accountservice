@@ -2,6 +2,9 @@ package com.septgroup.accountservice.patient;
 
 import com.septgroup.accountservice.patient.dto.Patient;
 import com.septgroup.accountservice.patient.dto.container.Patients;
+import com.septgroup.accountservice.exception.AlreadyExistException;
+import com.septgroup.accountservice.exception.NotFoundException;
+import com.septgroup.accountservice.shared.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,31 +16,27 @@ import java.net.URI;
 @RequestMapping("/accountinfo/patient")
 public class PatientController {
     @Autowired
-    private PatientDAO patientDAO;
+    private PatientService patientService;
 
     @GetMapping
     public Patients getAllPatients() {
-        return patientDAO.getPatients();
+        return patientService.getPatients();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getPatient(@PathVariable("id") String id) {
-        var patient = patientDAO.getPatient(id);
-        if (patient.isEmpty()) {
-            return ResponseEntity.badRequest().body("The patient you requested does not exist!");
-        }
-
-        return ResponseEntity.ok(patient.get());
+        Patient patient = patientService.getPatient(id).orElseThrow(() -> new NotFoundException("The patient you requested does not exist!"));
+        return ResponseEntity.ok(patient);
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> addPatient(@RequestBody Patient newPatient) {
-        if (patientDAO.getPatient(newPatient).isPresent()) {
-            return ResponseEntity.badRequest().body(String.format("A patient with id %s already exists!", newPatient.getId()));
+        if (patientService.getPatient(newPatient).isPresent()) {
+            throw new AlreadyExistException(String.format("A patient with prescription_id %s already exists!", newPatient.getId()));
         }
 
-        patientDAO.addPatient(newPatient);
-        // Set the location header field to the endpoint of this new doctor.
+        patientService.addPatient(newPatient);
+        // Set the location header field to the endpoint of this new patient.
         URI loc = ServletUriComponentsBuilder.fromCurrentRequest()
                 .buildAndExpand(newPatient.getId())
                 .toUri();
@@ -47,28 +46,24 @@ public class PatientController {
 
     @PutMapping(consumes = "application/json")
     public ResponseEntity<Object> updatePatient(@RequestBody Patient newPatient) {
-        var result = patientDAO.getPatient(newPatient);
-        if (result.isEmpty()) {
-            return ResponseEntity.badRequest().body(String.format("You cannot update a patient (with id %s) that does not exist!", newPatient.getId()));
-        }
-        Patient patientToUpdate = result.get();
+        Patient patientToUpdate = patientService.getPatient(newPatient)
+                .orElseThrow(() -> new NotFoundException(
+                        String.format("You cannot update a patient (with prescription_id %s) that does not exist!", newPatient.getId())));
         patientToUpdate.setEmail(newPatient.getEmail());
         patientToUpdate.setSex(newPatient.getSex());
+        patientToUpdate.setDOB(newPatient.getDOB());
+        patientToUpdate.setPrescriptions(newPatient.getPrescriptions());
+        patientToUpdate.setHealthStatus(newPatient.getHealthStatus());
         patientToUpdate.setFirstName(newPatient.getFirstName());
         patientToUpdate.setLastName(newPatient.getLastName());
         patientToUpdate.setMobileNumber(newPatient.getMobileNumber());
-
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Object> deletePatient(@PathVariable("id") String id) {
-        var itemFound = patientDAO.getPatient(id);
-        if (itemFound.isEmpty()) {
-            return ResponseEntity.badRequest().body(String.format("The patient (id %s) you tried to delete does not exist!", id));
-        }
-
-        patientDAO.removePatient(id);
-        return ResponseEntity.ok(itemFound);
+        Patient patient = patientService.getPatient(id).orElseThrow(() -> new NotFoundException(String.format("The patient (prescription_id %s) you tried to delete does not exist!", id)));
+        patientService.removePatient(patient);
+        return ResponseEntity.ok(patient);
     }
 }

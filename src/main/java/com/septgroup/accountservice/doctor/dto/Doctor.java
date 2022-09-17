@@ -8,9 +8,9 @@ import java.util.Objects;
 public class Doctor extends User {
     private Clinic clinicWorkingAt;
 
-    public Doctor(String email, String firstName, String lastName, Sex sex, String mobileNumber, Clinic clinicsWorkingAt) {
-        super(email, firstName, lastName, sex, mobileNumber);
-        this.clinicWorkingAt = clinicsWorkingAt;
+    public Doctor(String id, String email, String firstName, String lastName, Sex sex, String mobileNumber, Clinic clinicWorkingAt) {
+        super(id, email, firstName, lastName, sex, mobileNumber);
+        this.clinicWorkingAt = clinicWorkingAt;
     }
 
     public Clinic getClinicWorkingAt() {
@@ -38,7 +38,7 @@ public class Doctor extends User {
     @Override
     public String toString() {
         return "Doctor{" +
-                "id='" + getId() + '\'' +
+                "prescription_id='" + getId() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ", firstName='" + getFirstName() + '\'' +
                 ", lastName='" + getLastName() + '\'' +

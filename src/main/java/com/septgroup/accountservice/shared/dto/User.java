@@ -12,7 +12,8 @@ public abstract class User {
     private Sex sex;
     private String mobileNumber;
 
-    public User(String email, String firstName, String lastName, Sex sex, String mobileNumber) {
+    public User(String id, String email, String firstName, String lastName, Sex sex, String mobileNumber) {
+        this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -88,7 +89,7 @@ public abstract class User {
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
+                "prescription_id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

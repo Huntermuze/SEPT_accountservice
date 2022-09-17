@@ -1,6 +1,5 @@
 package com.septgroup.accountservice.patient.dto;
 
-import com.septgroup.accountservice.patient.HealthStatus;
 import com.septgroup.accountservice.shared.Sex;
 import com.septgroup.accountservice.shared.dto.User;
 
@@ -13,8 +12,9 @@ public class Patient extends User {
     private List<Prescription> prescriptions;
     private HealthStatus healthStatus;
 
-    public Patient(String email, String firstName, String lastName, Sex sex, String mobileNumber, Date DOB, List<Prescription> prescriptions, HealthStatus healthStatus) {
-        super(email, firstName, lastName, sex, mobileNumber);
+    public Patient(String id, String email, String firstName, String lastName, Sex sex, String mobileNumber, Date DOB,
+                   List<Prescription> prescriptions, HealthStatus healthStatus) {
+        super(id, email, firstName, lastName, sex, mobileNumber);
         this.DOB = DOB;
         this.prescriptions = prescriptions;
         this.healthStatus = healthStatus;
@@ -61,7 +61,7 @@ public class Patient extends User {
     @Override
     public String toString() {
         return "Patient{" +
-                "id='" + getId() + '\'' +
+                "prescription_id='" + getId() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ", firstName='" + getFirstName() + '\'' +
                 ", lastName='" + getLastName() + '\'' +

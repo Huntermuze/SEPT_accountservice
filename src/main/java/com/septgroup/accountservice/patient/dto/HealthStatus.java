@@ -1,4 +1,4 @@
-package com.septgroup.accountservice.patient;
+package com.septgroup.accountservice.patient.dto;
 
 public enum HealthStatus {
     EXCELLENT,
