@@ -36,25 +36,18 @@ jobs:
           java-version: '18'
           distribution: 'temurin'
           cache: maven
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
-
       - name: Install PostgreSQL
         run: |
-          apt update
-          apt install postgresql postgresql-contrib
-          systemctl start postgresql.service
-
+          sudo apt update
+          sudo apt install postgresql postgresql-contrib
+          sudo systemctl start postgresql.service
       - name: Create new user role
         run: |
-          -u postgres psql
-          createuser --interactive --pwprompt
-          mbyamen
-          huntermuze
-          huntermuze
-          y
-          y
-      - name: Create SEPT PostgreSQL Table
+          sudo -u postgres createuser runner -d -r -s
+      - name: Create SEPT PostgreSQL table
         run: |
-          -u postgres psql
+          sudo -u postgres psql
           createdb sept
+          exit
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
