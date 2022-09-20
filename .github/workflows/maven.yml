@@ -50,5 +50,6 @@ jobs:
         run: |
           sudo -u postgres psql
           createdb sept
+          exit
       - name: Build with Maven
         run: mvn -B package --file pom.xml
