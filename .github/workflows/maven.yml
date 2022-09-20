@@ -50,6 +50,7 @@ jobs:
           huntermuze
           y
           y
+          y
       - name: Create SEPT PostgreSQL Table
         run: |
           sudo -u postgres psql
