@@ -43,14 +43,9 @@ jobs:
           sudo systemctl start postgresql.service
       - name: Create new user role
         run: |
-          sudo -u postgres psql
-          createuser --interactive --pwprompt
-          mbyamen
+          sudo -u postgres createuser mbyamen -P -d -r -s
           huntermuze
           huntermuze
-          y
-          y
-          y
       - name: Create SEPT PostgreSQL Table
         run: |
           sudo -u postgres psql
