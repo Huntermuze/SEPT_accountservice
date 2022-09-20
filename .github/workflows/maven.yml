@@ -38,12 +38,12 @@ jobs:
           cache: maven
       - name: Install PostgreSQL
         run: |
-          apt update
-          apt install postgresql postgresql-contrib
-          systemctl start postgresql.service
+          sudo apt update
+          sudo apt install postgresql postgresql-contrib
+          sudo systemctl start postgresql.service
       - name: Create new user role
         run: |
-          -u postgres psql
+          sudo -u postgres psql
           createuser --interactive --pwprompt
           mbyamen
           huntermuze
@@ -52,7 +52,7 @@ jobs:
           y
       - name: Create SEPT PostgreSQL Table
         run: |
-          -u postgres psql
+          sudo -u postgres psql
           createdb sept
       - name: Build with Maven
         run: mvn -B package --file pom.xml
