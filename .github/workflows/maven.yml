@@ -43,10 +43,8 @@ jobs:
           sudo systemctl start postgresql.service
       - name: Create new user role
         run: |
-          sudo -u postgres createuser mbyamen -P -d -r -s
-          huntermuze
-          huntermuze
-      - name: Create SEPT PostgreSQL Table
+          sudo -u postgres createuser mbyamen -d -r -s
+      - name: Create SEPT PostgreSQL table
         run: |
           sudo -u postgres psql
           createdb sept
