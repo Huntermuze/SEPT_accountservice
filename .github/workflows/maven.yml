@@ -36,15 +36,11 @@ jobs:
           java-version: '18'
           distribution: 'temurin'
           cache: maven
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
-
       - name: Install PostgreSQL
         run: |
           apt update
           apt install postgresql postgresql-contrib
           systemctl start postgresql.service
-
       - name: Create new user role
         run: |
           -u postgres psql
@@ -58,3 +54,5 @@ jobs:
         run: |
           -u postgres psql
           createdb sept
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
