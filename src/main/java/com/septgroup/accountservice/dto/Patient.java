@@ -1,21 +1,17 @@
 package com.septgroup.accountservice.dto;
 
-import com.septgroup.accountservice.shared.Sex;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class Patient extends User {
     private Date DOB;
-    private List<Prescription> prescriptions;
     private HealthStatus healthStatus;
 
-    public Patient(String id, String email, String firstName, String lastName, Sex sex, String mobileNumber, Date DOB,
+    public Patient(String id, String email, String firstName, String lastName, String mobileNumber, Date DOB,
                    List<Prescription> prescriptions, HealthStatus healthStatus) {
-        super(id, email, firstName, lastName, sex, mobileNumber);
+        super(id, email, firstName, lastName, mobileNumber);
         this.DOB = DOB;
-        this.prescriptions = prescriptions;
         this.healthStatus = healthStatus;
     }
 
@@ -25,14 +21,6 @@ public class Patient extends User {
 
     public void setDOB(Date DOB) {
         this.DOB = DOB;
-    }
-
-    public List<Prescription> getPrescriptions() {
-        return prescriptions;
-    }
-
-    public void setPrescriptions(List<Prescription> prescriptions) {
-        this.prescriptions = prescriptions;
     }
 
     public HealthStatus getHealthStatus() {
@@ -49,12 +37,12 @@ public class Patient extends User {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Patient patient = (Patient) o;
-        return DOB.equals(patient.DOB) && prescriptions.equals(patient.prescriptions) && healthStatus == patient.healthStatus;
+        return DOB.equals(patient.DOB) && healthStatus == patient.healthStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), DOB, prescriptions, healthStatus);
+        return Objects.hash(super.hashCode(), DOB, healthStatus);
     }
 
     @Override
@@ -64,10 +52,8 @@ public class Patient extends User {
                 ", email='" + getEmail() + '\'' +
                 ", firstName='" + getFirstName() + '\'' +
                 ", lastName='" + getLastName() + '\'' +
-                ", sex='" + getSex() + '\'' +
                 ", mobileNumber='" + getMobileNumber() + '\'' +
                 ", DOB=" + DOB + '\'' +
-                ", prescriptions=" + prescriptions + '\'' +
                 ", healthStatus=" + healthStatus + '\'' +
                 "}";
     }

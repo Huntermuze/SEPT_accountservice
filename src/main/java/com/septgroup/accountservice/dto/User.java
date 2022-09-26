@@ -1,7 +1,5 @@
 package com.septgroup.accountservice.dto;
 
-import com.septgroup.accountservice.shared.Sex;
-
 import java.util.Objects;
 
 public abstract class User {
@@ -9,15 +7,13 @@ public abstract class User {
     private String email;
     private String firstName;
     private String lastName;
-    private Sex sex;
     private String mobileNumber;
 
-    public User(String id, String email, String firstName, String lastName, Sex sex, String mobileNumber) {
+    public User(String id, String email, String firstName, String lastName, String mobileNumber) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.sex = sex;
         this.mobileNumber = mobileNumber;
     }
 
@@ -40,10 +36,6 @@ public abstract class User {
         return lastName;
     }
 
-    public Sex getSex() {
-        return sex;
-    }
-
     public String getMobileNumber() {
         return mobileNumber;
     }
@@ -64,10 +56,6 @@ public abstract class User {
         this.lastName = lastName;
     }
 
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
-
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
@@ -78,12 +66,12 @@ public abstract class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return id.equals(user.id) && email.equals(user.email) && firstName.equals(user.firstName) &&
-                lastName.equals(user.lastName) && sex.equals(user.sex) && mobileNumber.equals(user.mobileNumber);
+                lastName.equals(user.lastName) && mobileNumber.equals(user.mobileNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, firstName, lastName, sex, mobileNumber);
+        return Objects.hash(id, email, firstName, lastName, mobileNumber);
     }
 
     @Override
@@ -93,7 +81,6 @@ public abstract class User {
                 ", email='" + email + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", sex='" + sex + '\'' +
                 ", mobileNumber='" + mobileNumber + '\'' +
                 '}';
     }

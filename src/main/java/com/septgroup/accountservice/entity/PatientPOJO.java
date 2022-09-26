@@ -1,7 +1,6 @@
 package com.septgroup.accountservice.entity;
 
 import com.septgroup.accountservice.dto.HealthStatus;
-import com.septgroup.accountservice.shared.Sex;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,13 +12,13 @@ import java.util.UUID;
 @Table(name = "Patient")
 public class PatientPOJO extends UserPOJO {
     @Column(name = "dob", nullable = false)
-    private Date dob;
+    private Date DOB;
     @Column(name = "health_status", nullable = false)
     private HealthStatus healthStatus;
 
-    public PatientPOJO(UUID id, String email, String firstName, String lastName, Sex sex, String mobileNumber, Date dob, HealthStatus healthStatus) {
-        super(id, email, firstName, lastName, sex, mobileNumber);
-        this.dob = dob;
+    public PatientPOJO(UUID id, String email, String firstName, String lastName, String mobileNumber, Date DOB, HealthStatus healthStatus) {
+        super(id, email, firstName, lastName, mobileNumber);
+        this.DOB = DOB;
         this.healthStatus = healthStatus;
     }
 
@@ -27,12 +26,12 @@ public class PatientPOJO extends UserPOJO {
 
     }
 
-    public Date getDob() {
-        return dob;
+    public Date getDOB() {
+        return DOB;
     }
 
-    public void setDob(Date DOB) {
-        this.dob = DOB;
+    public void setDOB(Date DOB) {
+        this.DOB = DOB;
     }
 
     public HealthStatus getHealthStatus() {

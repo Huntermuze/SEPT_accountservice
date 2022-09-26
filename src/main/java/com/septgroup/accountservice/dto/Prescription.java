@@ -1,4 +1,4 @@
 package com.septgroup.accountservice.dto;
 
-public record Prescription(long prescription_id, String drugName, double quantity, String pharmaceuticalCompany) {
+public record Prescription(String drugName, double quantity, String pharmaceuticalCompany) {
 }

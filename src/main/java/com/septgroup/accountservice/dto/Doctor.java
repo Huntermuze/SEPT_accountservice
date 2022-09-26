@@ -1,22 +1,20 @@
 package com.septgroup.accountservice.dto;
 
-import com.septgroup.accountservice.shared.Sex;
-
 import java.util.Objects;
 
 public class Doctor extends User {
-    private Clinic clinicWorkingAt;
+    private String clinicWorkingAt;
 
-    public Doctor(String id, String email, String firstName, String lastName, Sex sex, String mobileNumber, Clinic clinicWorkingAt) {
-        super(id, email, firstName, lastName, sex, mobileNumber);
+    public Doctor(String id, String email, String firstName, String lastName, String mobileNumber, String clinicWorkingAt) {
+        super(id, email, firstName, lastName, mobileNumber);
         this.clinicWorkingAt = clinicWorkingAt;
     }
 
-    public Clinic getClinicWorkingAt() {
+    public String getClinicWorkingAt() {
         return clinicWorkingAt;
     }
 
-    public void setClinicWorkingAt(Clinic clinicWorkingAt) {
+    public void setClinicWorkingAt(String clinicWorkingAt) {
         this.clinicWorkingAt = clinicWorkingAt;
     }
 
@@ -41,7 +39,6 @@ public class Doctor extends User {
                 ", email='" + getEmail() + '\'' +
                 ", firstName='" + getFirstName() + '\'' +
                 ", lastName='" + getLastName() + '\'' +
-                ", sex='" + getSex() + '\'' +
                 ", mobileNumber='" + getMobileNumber() + '\'' +
                 ", clinicWorkingAt=" + clinicWorkingAt + '\'' +
                 "}";

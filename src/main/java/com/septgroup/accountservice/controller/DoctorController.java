@@ -1,15 +1,14 @@
 package com.septgroup.accountservice.controller;
 
-import com.septgroup.accountservice.service.DoctorService;
 import com.septgroup.accountservice.dto.Doctor;
 import com.septgroup.accountservice.dto.container.Doctors;
-import com.septgroup.accountservice.exception.AlreadyExistException;
-import com.septgroup.accountservice.exception.NotFoundException;
+import com.septgroup.accountservice.service.api.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.ws.rs.core.Response;
 import java.net.URI;
 
 @RestController
@@ -19,22 +18,18 @@ public class DoctorController {
     private DoctorService doctorService;
 
     @GetMapping
-    public Doctors getAllDoctors() {
-        return doctorService.getDoctors();
+    public ResponseEntity<Object> getAllDoctors() {
+        return ResponseEntity.ok(doctorService.getDoctors());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getDoctor(@PathVariable("id") String id) {
-        Doctor doctor = doctorService.getDoctor(id).orElseThrow(() -> new NotFoundException("The doctor you requested does not exist!"));
+        Doctor doctor = doctorService.getDoctor(id);
         return ResponseEntity.ok(doctor);
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> addDoctor(@RequestBody Doctor newDoctor) {
-        if (doctorService.getDoctor(newDoctor).isPresent()) {
-            throw new AlreadyExistException(String.format("A doctor with prescription_id %s already exists!", newDoctor.getId()));
-        }
-
         doctorService.addDoctor(newDoctor);
         // Set the location header field to the endpoint of this new doctor.
         URI loc = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -45,22 +40,14 @@ public class DoctorController {
 
     @PutMapping(consumes = "application/json")
     public ResponseEntity<Object> updateDoctor(@RequestBody Doctor newDoctor) {
-        Doctor docToUpdate = doctorService.getDoctor(newDoctor)
-                .orElseThrow(() -> new NotFoundException(
-                        String.format("You cannot update a doctor (with prescription_id %s) that does not exist!", newDoctor.getId())));
-        docToUpdate.setEmail(newDoctor.getEmail());
-        docToUpdate.setSex(newDoctor.getSex());
-        docToUpdate.setClinicWorkingAt(newDoctor.getClinicWorkingAt());
-        docToUpdate.setFirstName(newDoctor.getFirstName());
-        docToUpdate.setLastName(newDoctor.getLastName());
-        docToUpdate.setMobileNumber(newDoctor.getMobileNumber());
+        doctorService.updateDoctor(newDoctor);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Object> deleteDoctor(@PathVariable("id") String id) {
-        Doctor doctor = doctorService.getDoctor(id).orElseThrow(() -> new NotFoundException(String.format("The doctor (prescription_id %s) you tried to delete does not exist!", id)));
-        doctorService.removeDoctor(doctor);
+    public ResponseEntity<Object> deleteDoctor(@PathVariable("id") String doctorID) {
+        Doctor doctor = doctorService.getDoctor(doctorID);
+        doctorService.removeDoctor(doctorID);
         return ResponseEntity.ok(doctor);
     }
 }

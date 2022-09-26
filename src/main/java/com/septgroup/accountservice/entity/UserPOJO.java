@@ -1,9 +1,6 @@
 package com.septgroup.accountservice.entity;
 
-import com.septgroup.accountservice.shared.Sex;
-
 import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.UUID;
@@ -15,19 +12,18 @@ public abstract class UserPOJO {
             name = "id",
             updatable = false
     )
-    @GeneratedValue()
     private UUID id;
     @Column(
             name = "email",
             nullable = false,
-            columnDefinition = "TEXT"
+            columnDefinition = "TEXT",
+            unique = true
     )
     private String email;
     @Column(
             name = "first_name",
             nullable = false,
-            columnDefinition = "TEXT",
-            unique = true
+            columnDefinition = "TEXT"
     )
     private String firstName;
     @Column(
@@ -37,23 +33,17 @@ public abstract class UserPOJO {
     )
     private String lastName;
     @Column(
-            name = "sex",
-            nullable = false
-    )
-    private Sex sex;
-    @Column(
             name = "mobile_number",
             nullable = false,
             unique = true
     )
     private String mobileNumber;
 
-    public UserPOJO(UUID id, String email, String firstName, String lastName, Sex sex, String mobileNumber) {
+    public UserPOJO(UUID id, String email, String firstName, String lastName, String mobileNumber) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.sex = sex;
         this.mobileNumber = mobileNumber;
     }
 
@@ -91,14 +81,6 @@ public abstract class UserPOJO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Sex getSex() {
-        return sex;
-    }
-
-    public void setSex(Sex sex) {
-        this.sex = sex;
     }
 
     public String getMobileNumber() {

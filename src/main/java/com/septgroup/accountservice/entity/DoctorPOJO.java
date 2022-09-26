@@ -1,7 +1,5 @@
 package com.septgroup.accountservice.entity;
 
-import com.septgroup.accountservice.shared.Sex;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -10,23 +8,23 @@ import java.util.UUID;
 @Entity(name = "Doctor")
 @Table(name = "Doctor")
 public class DoctorPOJO extends UserPOJO {
-    @Column(name = "clinic_id")
-    private Long clinicID;
+    @Column(name = "clinic_name", nullable = false)
+    private String clinicName;
 
-    public DoctorPOJO(UUID id, String email, String firstName, String lastName, Sex sex, String mobileNumber, Long clinicID) {
-        super(id, email, firstName, lastName, sex, mobileNumber);
-        this.clinicID = clinicID;
+    public DoctorPOJO(UUID id, String email, String firstName, String lastName, String mobileNumber, String clinicName) {
+        super(id, email, firstName, lastName, mobileNumber);
+        this.clinicName = clinicName;
     }
 
     public DoctorPOJO() {
 
     }
 
-    public Long getClinicID() {
-        return clinicID;
+    public String getClinicName() {
+        return clinicName;
     }
 
-    public void setClinicID(Long clinicID) {
-        this.clinicID = clinicID;
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
     }
 }

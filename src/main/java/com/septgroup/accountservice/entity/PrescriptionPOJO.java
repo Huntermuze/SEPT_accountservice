@@ -21,8 +21,7 @@ public class PrescriptionPOJO {
     @Column(name = "patient_id", nullable = false)
     private String patientId;
 
-    public PrescriptionPOJO(Long id, String drugName, double quantity, String pharmaceuticalCompany, String prescriberId, String patientId) {
-        this.id = id;
+    public PrescriptionPOJO(String drugName, double quantity, String pharmaceuticalCompany, String prescriberId, String patientId) {
         this.drugName = drugName;
         this.quantity = quantity;
         this.pharmaceuticalCompany = pharmaceuticalCompany;
@@ -31,7 +30,6 @@ public class PrescriptionPOJO {
     }
 
     public PrescriptionPOJO() {
-
     }
 
     public Long getId() {
