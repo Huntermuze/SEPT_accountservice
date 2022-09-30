@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
-@RequestMapping("/relationship")
+@RequestMapping("/accountinfo/relationship")
 public class RelationshipController {
     @Autowired
     RelationshipService relationshipService;

@@ -10,7 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/clinic")
+@RequestMapping("/accountinfo/clinic")
 public class ClinicController {
     @Autowired
     ClinicService clinicService;
