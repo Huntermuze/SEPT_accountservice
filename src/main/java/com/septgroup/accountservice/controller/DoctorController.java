@@ -1,14 +1,12 @@
 package com.septgroup.accountservice.controller;
 
 import com.septgroup.accountservice.dto.Doctor;
-import com.septgroup.accountservice.dto.container.Doctors;
 import com.septgroup.accountservice.service.api.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.ws.rs.core.Response;
 import java.net.URI;
 
 @RestController
