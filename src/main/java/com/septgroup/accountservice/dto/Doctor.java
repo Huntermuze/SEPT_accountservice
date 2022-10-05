@@ -3,19 +3,19 @@ package com.septgroup.accountservice.dto;
 import java.util.Objects;
 
 public class Doctor extends User {
-    private String clinicWorkingAt;
+    private String clinicName;
 
-    public Doctor(String id, String email, String firstName, String lastName, String mobileNumber, String clinicWorkingAt) {
+    public Doctor(String id, String email, String firstName, String lastName, String mobileNumber, String clinicName) {
         super(id, email, firstName, lastName, mobileNumber);
-        this.clinicWorkingAt = clinicWorkingAt;
+        this.clinicName = clinicName;
     }
 
-    public String getClinicWorkingAt() {
-        return clinicWorkingAt;
+    public String getClinicName() {
+        return clinicName;
     }
 
-    public void setClinicWorkingAt(String clinicWorkingAt) {
-        this.clinicWorkingAt = clinicWorkingAt;
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
     }
 
     @Override
@@ -24,23 +24,23 @@ public class Doctor extends User {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Doctor doctor = (Doctor) o;
-        return clinicWorkingAt.equals(doctor.clinicWorkingAt);
+        return clinicName.equals(doctor.clinicName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), clinicWorkingAt);
+        return Objects.hash(super.hashCode(), clinicName);
     }
 
     @Override
     public String toString() {
         return "Doctor{" +
-                "prescription_id='" + getId() + '\'' +
+                "id='" + getId() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ", firstName='" + getFirstName() + '\'' +
                 ", lastName='" + getLastName() + '\'' +
                 ", mobileNumber='" + getMobileNumber() + '\'' +
-                ", clinicWorkingAt=" + clinicWorkingAt + '\'' +
+                ", clinicName=" + clinicName + '\'' +
                 "}";
     }
 }

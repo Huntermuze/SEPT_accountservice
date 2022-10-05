@@ -50,13 +50,13 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public void addDoctor(Doctor doc) throws InvalidIdException, AlreadyExistException, NotFoundException {
         // Ignore the return value.
-        clinicService.returnIfFoundElseThrow(doc.getClinicWorkingAt());
+        clinicService.returnIfFoundElseThrow(doc.getClinicName());
         try {
             if (getDoctor(doc).getId().equals(doc.getId())) {
                 throw new AlreadyExistException(String.format("A doctor with this id (%s) already exists!", doc.getId()));
             }
         } catch (NotFoundException | NoSuchElementException ignored) {
-            doctorRepository.save(doctorMergeService.doctorDTOToEntity(doc, doc.getClinicWorkingAt()));
+            doctorRepository.save(doctorMergeService.doctorDTOToEntity(doc, doc.getClinicName()));
         }
     }
 
