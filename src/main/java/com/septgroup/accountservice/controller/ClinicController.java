@@ -15,7 +15,7 @@ public class ClinicController {
     @Autowired
     ClinicService clinicService;
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<Object> getAllClinics() {
         return ResponseEntity.ok(clinicService.getAllClinics());
     }

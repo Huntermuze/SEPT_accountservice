@@ -1,4 +1,4 @@
-package com.septgroup.accountservice.service.implementation.business;
+package com.septgroup.accountservice.service;
 
 import com.septgroup.accountservice.dto.Prescription;
 import com.septgroup.accountservice.entity.PrescriptionPOJO;

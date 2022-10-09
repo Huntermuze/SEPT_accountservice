@@ -7,7 +7,7 @@ import com.septgroup.accountservice.exception.AlreadyExistException;
 import com.septgroup.accountservice.exception.NotFoundException;
 import com.septgroup.accountservice.repository.ClinicRepository;
 import com.septgroup.accountservice.service.api.ClinicService;
-import com.septgroup.accountservice.service.implementation.business.ClinicMergeService;
+import com.septgroup.accountservice.service.ClinicMergeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

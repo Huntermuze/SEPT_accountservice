@@ -9,7 +9,7 @@ import com.septgroup.accountservice.exception.NotFoundException;
 import com.septgroup.accountservice.repository.DoctorRepository;
 import com.septgroup.accountservice.service.api.ClinicService;
 import com.septgroup.accountservice.service.api.DoctorService;
-import com.septgroup.accountservice.service.implementation.business.DoctorMergeService;
+import com.septgroup.accountservice.service.DoctorMergeService;
 import com.septgroup.accountservice.util.VerificationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

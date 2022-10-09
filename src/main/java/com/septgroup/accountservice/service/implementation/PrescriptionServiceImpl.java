@@ -6,7 +6,7 @@ import com.septgroup.accountservice.exception.InvalidIdException;
 import com.septgroup.accountservice.exception.NotFoundException;
 import com.septgroup.accountservice.repository.PrescriptionRepository;
 import com.septgroup.accountservice.service.api.PrescriptionService;
-import com.septgroup.accountservice.service.implementation.business.PrescriptionMergeService;
+import com.septgroup.accountservice.service.PrescriptionMergeService;
 import com.septgroup.accountservice.util.VerificationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

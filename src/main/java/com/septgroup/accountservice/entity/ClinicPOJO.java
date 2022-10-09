@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "Clinic")
 public class ClinicPOJO {
     @Id
-    @Column(name = "clinic_name", nullable = false)
+    @Column(name = "clinic_name")
     private String clinicName;
     @Column(name = "location", nullable = false, unique = true)
     private String location;
