@@ -1,4 +1,4 @@
-FROM maven:3.8.6-jdk-18-slim
+FROM maven:3.8.6-openjdk-18
 #WORKDIR ./
 #COPY ./BankAccService.jar BankAccService.jar
 #ENTRYPOINT ["java","-jar","/BankAccService.jar"]
