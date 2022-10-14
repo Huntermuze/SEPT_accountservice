@@ -1,5 +1,4 @@
-FROM openjdk:18-jdk-oraclelinux8
-FROM maven:3.8.6
+FROM maven:3.8.6-jdk-18-slim
 #WORKDIR ./
 #COPY ./BankAccService.jar BankAccService.jar
 #ENTRYPOINT ["java","-jar","/BankAccService.jar"]
