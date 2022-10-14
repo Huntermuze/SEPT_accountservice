@@ -17,17 +17,12 @@ jobs:
       postgres:
         # Docker Hub image
         image: postgres
-        # Provide the password for postgres
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_PORT: 5432
         # Set health checks to wait until postgres has started
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 18
@@ -36,10 +31,12 @@ jobs:
           java-version: '18'
           distribution: 'temurin'
           cache: maven
-      - name: Install PostgreSQL
-        run: |
-          sudo apt update
-          sudo apt install postgresql postgresql-contrib
-          sudo systemctl start postgresql.service
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+#      - name: Install PostgreSQL
+#        run: |
+#          sudo apt update
+#          sudo apt install postgresql postgresql-contrib
+#          sudo systemctl start postgresql.service
+#      - name: Build with Maven
+#        run: mvn -B package --file pom.xml
+      - name: Build the service stack and run the microservice
+        run: docker-compose up -d
